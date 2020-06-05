@@ -4,26 +4,20 @@ import ctypes
 import os
 import random
 
-
-client_id = "caI0Zbw5XXBjkQ"
-client_secret = "Bes-8tYR7lJwKUtVipJdOPldU7Q"
-user_agent = "python_wallpaper"
-username = "1st-reddit-lord"
-password = "hbvvbh147"
-
 url=''
 imageName =''
-filePath='C:\\Users\\User\\dev\\pythonWallpaper\\images\\'
+filePath= os.path.abspath(os.getcwd()) + '\\images\\'
 imageDirectory=''
+
 
 ##########################################
 
 def redditObj():
-    reddit = praw.Reddit(client_id='caI0Zbw5XXBjkQ',
-                        client_secret='Bes-8tYR7lJwKUtVipJdOPldU7Q', 
-                        user_agent='python_wallpaper',
-                        username='1st-reddit-lord',
-                        password='hbvvbh147')
+    reddit = praw.Reddit(client_id=os.environ.get('client_id'),
+                        client_secret=os.environ.get('client_secret'), 
+                        user_agent=os.environ.get('user_agent'),
+                        username=os.environ.get('reddit_username'),
+                        password=os.environ.get('reddit_password'))
     return reddit
 
 def downloadImage(url,filePath,fileName):
